@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Пуля VPN</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     * {
       margin: 0;
@@ -12,7 +11,6 @@
       box-sizing: border-box;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     }
-
     body {
       min-height: 100vh;
       background: linear-gradient(180deg, #0a1628 0%, #050a12 100%);
@@ -22,26 +20,22 @@
       align-items: flex-start;
       padding: 16px 0 30px;
     }
-
     .app {
       max-width: 420px;
       width: 100%;
       padding: 0 16px 20px;
     }
-
-    /* ---------- БАЛАНС ---------- */
     .balance-card {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.04);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-radius: 28px;
       padding: 28px 20px 22px;
       margin-bottom: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
       text-align: center;
     }
-
     .balance-label {
       font-size: 12px;
       color: #6b8cbf;
@@ -49,7 +43,6 @@
       text-transform: uppercase;
       font-weight: 600;
     }
-
     .balance-value {
       font-size: 44px;
       font-weight: 800;
@@ -57,66 +50,55 @@
       margin: 4px 0 6px;
       letter-spacing: -1px;
     }
-
     .balance-value span {
       font-size: 20px;
       font-weight: 500;
       color: #6b8cbf;
       margin-left: 2px;
     }
-
     .balance-hint {
       font-size: 13px;
       color: #4a6a8a;
     }
-
-    /* ---------- ТОГГЛЫ ---------- */
     .toggle-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.04);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       padding: 16px 18px;
       border-radius: 18px;
       margin-bottom: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.05);
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
-
     .toggle-row:active {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       transform: scale(0.98);
     }
-
     .toggle-info {
       display: flex;
       flex-direction: column;
       gap: 2px;
       pointer-events: none;
     }
-
     .toggle-label {
       font-size: 16px;
       font-weight: 600;
       color: #f0f4ff;
     }
-
     .toggle-sub {
       font-size: 13px;
       color: #4a6a8a;
       transition: color 0.3s;
     }
-
     .toggle-sub.active {
       color: #4ade80;
     }
-
-    /* Переключатель (кастомный) */
     .switch {
       position: relative;
       width: 48px;
@@ -130,11 +112,9 @@
       padding: 0;
       pointer-events: none;
     }
-
     .switch.active {
       background: #f97316;
     }
-
     .switch::after {
       content: '';
       position: absolute;
@@ -145,15 +125,12 @@
       background: #fff;
       border-radius: 50%;
       transition: transform 0.25s ease, background 0.25s;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-
     .switch.active::after {
       transform: translateX(20px);
       background: #fff;
     }
-
-    /* ---------- ПОПОЛНИТЬ ---------- */
     .topup-btn {
       display: block;
       width: 100%;
@@ -168,34 +145,30 @@
       text-align: center;
       cursor: pointer;
       transition: transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.3);
+      box-shadow: 0 8px 30px rgba(249,115,22,0.3);
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
-
     .topup-btn:active {
       transform: scale(0.97);
     }
-
-    /* ---------- МЕНЮ ---------- */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin: 14px 0 18px;
     }
-
     .menu-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.04);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       padding: 16px 6px 14px;
       border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.05);
       cursor: pointer;
       transition: background 0.15s, transform 0.1s;
       text-decoration: none;
@@ -204,17 +177,14 @@
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
-
     .menu-item:active {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       transform: scale(0.95);
     }
-
     .menu-icon {
       font-size: 28px;
       line-height: 1.1;
     }
-
     .menu-label {
       font-size: 11px;
       font-weight: 500;
@@ -222,15 +192,13 @@
       text-align: center;
       line-height: 1.2;
     }
-
-    /* ---------- РЕФЕРАЛКА ---------- */
     .referral-block {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255,255,255,0.04);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border-radius: 18px;
       padding: 18px 18px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.05);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -239,29 +207,24 @@
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
-
     .referral-block:active {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       transform: scale(0.98);
     }
-
     .referral-left {
       display: flex;
       flex-direction: column;
       gap: 2px;
       pointer-events: none;
     }
-
     .referral-title {
       font-size: 14px;
       font-weight: 600;
     }
-
     .referral-sub {
       font-size: 12px;
       color: #4a6a8a;
     }
-
     .referral-badge {
       background: linear-gradient(135deg, #f97316, #ea580c);
       color: #fff;
@@ -272,8 +235,6 @@
       letter-spacing: 0.3px;
       pointer-events: none;
     }
-
-    /* ---------- ВЕРСИЯ ---------- */
     .version {
       text-align: center;
       font-size: 11px;
@@ -281,8 +242,6 @@
       margin-top: 20px;
       letter-spacing: 0.5px;
     }
-
-    /* ---------- АДАПТИВ ---------- */
     @media (max-width: 380px) {
       .balance-value { font-size: 34px; }
       .menu-grid { gap: 6px; }
@@ -293,17 +252,12 @@
   </style>
 </head>
 <body>
-
 <div class="app" id="app">
-
-  <!-- БАЛАНС -->
   <div class="balance-card">
     <div class="balance-label">ВАШ БАЛАНС</div>
     <div class="balance-value" id="balanceDisplay">0<span>₽</span></div>
     <div class="balance-hint" id="balanceHint">Пополните баланс для покупки подписки</div>
   </div>
-
-  <!-- ТОГГЛЫ -->
   <div class="toggle-row" id="vpnToggle">
     <div class="toggle-info">
       <div class="toggle-label">🔒 VPN</div>
@@ -311,7 +265,6 @@
     </div>
     <button class="switch" id="vpnSwitch" aria-label="Переключить VPN"></button>
   </div>
-
   <div class="toggle-row" id="whiteToggle">
     <div class="toggle-info">
       <div class="toggle-label">🌐 Белый интернет</div>
@@ -319,11 +272,7 @@
     </div>
     <button class="switch" id="whiteSwitch" aria-label="Переключить белый интернет"></button>
   </div>
-
-  <!-- ПОПОЛНИТЬ -->
   <button class="topup-btn" id="topupBtn">💰 Пополнить</button>
-
-  <!-- МЕНЮ -->
   <div class="menu-grid">
     <div class="menu-item" id="profileBtn">
       <span class="menu-icon">👤</span>
@@ -342,8 +291,6 @@
       <span class="menu-label">Поддержка</span>
     </div>
   </div>
-
-  <!-- РЕФЕРАЛКА -->
   <div class="referral-block" id="referralBlock">
     <div class="referral-left">
       <div class="referral-title">+50₽ ЗА ДРУГА</div>
@@ -351,18 +298,21 @@
     </div>
     <div class="referral-badge">ПРИГЛАСИТЬ</div>
   </div>
-
   <div class="version">Пуля VPN v1.0</div>
 </div>
 
 <script>
   (function() {
-    // --- Telegram WebApp ---
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-    tg.expand();
+    // Проверка: запущено внутри Telegram или в браузере
+    const isTelegram = !!(window.Telegram && window.Telegram.WebApp);
+    const tg = isTelegram ? window.Telegram.WebApp : null;
 
-    // --- Элементы ---
+    if (tg) {
+      tg.ready();
+      tg.expand();
+    }
+
+    // Элементы интерфейса
     const balanceDisplay = document.getElementById('balanceDisplay');
     const balanceHint = document.getElementById('balanceHint');
     const vpnSwitch = document.getElementById('vpnSwitch');
@@ -370,16 +320,16 @@
     const vpnStatus = document.getElementById('vpnStatus');
     const whiteStatus = document.getElementById('whiteStatus');
 
-    // --- Состояние ---
+    // Состояние
     let state = {
       balance: 0,
       vpn: false,
       white: false,
-      userId: tg.initDataUnsafe?.user?.id || 0,
-      username: tg.initDataUnsafe?.user?.username || 'Гость'
+      userId: tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : 0,
+      username: tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.username : 'Гость'
     };
 
-    // --- Функция обновления UI ---
+    // Функция обновления
     function updateUI() {
       balanceDisplay.innerHTML = state.balance + '<span>₽</span>';
       balanceHint.textContent = state.balance > 0 ? 'На балансе достаточно средств' : 'Пополните баланс для покупки подписки';
@@ -404,38 +354,51 @@
         whiteStatus.classList.remove('active');
       }
 
-      // Отправка данных боту
-      tg.sendData(JSON.stringify({
-        action: 'update_state',
-        state: state
-      }));
+      if (tg) {
+        tg.sendData(JSON.stringify({
+          action: 'update_state',
+          state: state
+        }));
+      }
     }
 
-    // --- Обработчики (работают на всей строке, а не только на переключателе) ---
+    // Показ сообщений (адаптивно)
+    function showMessage(msg) {
+      if (tg) {
+        tg.showAlert(msg);
+      } else {
+        alert(msg);
+      }
+    }
+
+    // Обработчики
     document.getElementById('vpnToggle').addEventListener('click', function(e) {
-      if (e.target.closest('.switch')) return; // чтобы не срабатывало дважды
+      if (e.target.closest('.switch')) return;
       if (!state.vpn && state.balance < 100) {
-        tg.showAlert('❌ Недостаточно средств. Пополните баланс.');
+        showMessage('❌ Недостаточно средств. Пополните баланс.');
         return;
       }
       state.vpn = !state.vpn;
       if (state.vpn) {
-        tg.showAlert('🔒 VPN подключён! Ключ отправлен в чат.');
-        tg.sendData(JSON.stringify({
-          action: 'connect_vpn',
-          userId: state.userId
-        }));
+        showMessage('🔒 VPN подключён! Ключ отправлен в чат.');
+        if (tg) {
+          tg.sendData(JSON.stringify({
+            action: 'connect_vpn',
+            userId: state.userId
+          }));
+        }
       } else {
-        tg.showAlert('🔒 VPN отключён');
-        tg.sendData(JSON.stringify({
-          action: 'disconnect_vpn',
-          userId: state.userId
-        }));
+        showMessage('🔒 VPN отключён');
+        if (tg) {
+          tg.sendData(JSON.stringify({
+            action: 'disconnect_vpn',
+            userId: state.userId
+          }));
+        }
       }
       updateUI();
     });
 
-    // Клик по самому переключателю тоже должен работать
     vpnSwitch.addEventListener('click', function(e) {
       e.stopPropagation();
       document.getElementById('vpnToggle').click();
@@ -444,11 +407,11 @@
     document.getElementById('whiteToggle').addEventListener('click', function(e) {
       if (e.target.closest('.switch')) return;
       if (!state.white && state.balance < 50) {
-        tg.showAlert('❌ Недостаточно средств для активации "Белого интернета".');
+        showMessage('❌ Недостаточно средств для активации "Белого интернета".');
         return;
       }
       state.white = !state.white;
-      tg.showAlert(state.white ? '🌐 Белый интернет включён' : '🌐 Белый интернет отключён');
+      showMessage(state.white ? '🌐 Белый интернет включён' : '🌐 Белый интернет отключён');
       updateUI();
     });
 
@@ -457,53 +420,50 @@
       document.getElementById('whiteToggle').click();
     });
 
-    // --- Пополнение ---
     document.getElementById('topupBtn').addEventListener('click', function() {
-      tg.sendData(JSON.stringify({
-        action: 'topup',
-        userId: state.userId
-      }));
-      // В реальности здесь открывается платёжная форма
-      tg.showAlert('💳 Вы будете перенаправлены на оплату');
-      // Имитация пополнения
+      if (tg) {
+        tg.sendData(JSON.stringify({
+          action: 'topup',
+          userId: state.userId
+        }));
+      }
+      showMessage('💳 Вы будете перенаправлены на оплату');
       state.balance += 200;
       updateUI();
-      tg.showAlert('✅ Баланс пополнен на 200 ₽');
+      showMessage('✅ Баланс пополнен на 200 ₽');
     });
 
-    // --- Рефералка ---
     document.getElementById('referralBlock').addEventListener('click', function() {
-      const refLink = `https://t.me/FastAwgBot?start=ref_${state.userId}`;
-      tg.showAlert(`📤 Ваша реферальная ссылка:\n${refLink}`);
-      tg.sendData(JSON.stringify({
-        action: 'referral',
-        userId: state.userId,
-        link: refLink
-      }));
+      const refLink = 'https://t.me/FastAwgBot?start=ref_' + state.userId;
+      showMessage('📤 Ваша реферальная ссылка:\n' + refLink);
+      if (tg) {
+        tg.sendData(JSON.stringify({
+          action: 'referral',
+          userId: state.userId,
+          link: refLink
+        }));
+      }
     });
 
-    // --- Меню ---
     document.getElementById('profileBtn').addEventListener('click', function() {
-      tg.showAlert(`👤 Профиль\nID: ${state.userId}\nИмя: ${state.username}`);
+      showMessage('👤 Профиль\nID: ' + state.userId + '\nИмя: ' + state.username);
     });
 
     document.getElementById('serversBtn').addEventListener('click', function() {
-      tg.showAlert('🌍 Список серверов:\n• Германия (основной)\n• Нидерланды (резерв)');
+      showMessage('🌍 Список серверов:\n• Германия (основной)\n• Нидерланды (резерв)');
     });
 
     document.getElementById('historyBtn').addEventListener('click', function() {
-      tg.showAlert('📜 История операций:\n• Пополнение +200 ₽\n• Подписка VPN -100 ₽');
+      showMessage('📜 История операций:\n• Пополнение +200 ₽\n• Подписка VPN -100 ₽');
     });
 
     document.getElementById('supportBtn').addEventListener('click', function() {
-      tg.showAlert('💬 Напишите в поддержку: @FastAwgBot');
+      showMessage('💬 Напишите в поддержку: @FastAwgBot');
     });
 
-    // --- Инициализация ---
     updateUI();
-    console.log('[Пуля VPN] WebApp загружен, user:', state);
+    console.log('[Пуля VPN] Загружен. Режим:', isTelegram ? 'Telegram' : 'Браузер');
   })();
 </script>
-
 </body>
 </html>
